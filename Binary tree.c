@@ -27,10 +27,8 @@ struct node* create_node()
 		newNode->right = create_node();
 	}
 }
-void pre_order(int *root)
+void pre_order(struct node *node)
 {
-	struct node*node;
-	node = root;
 	printf("%d ", node->data);
 	if(node->left != NULL)
 	{
@@ -41,6 +39,19 @@ void pre_order(int *root)
 		pre_order(node->right);
 	}
 }
+void post_order(struct node*node)
+{
+	if(node->left != NULL)
+	{
+		post_order(node->left);
+	} 
+	if(node->right != NULL)
+	{
+		post_order(node->right);
+	}
+	printf("%d ", node->data);
+}
+
 int main() 
 {
 	int data1;
@@ -49,5 +60,8 @@ int main()
 	root = create_node();
 	printf("\nTraversal in pre-order:\n");
 	pre_order(root);
+	printf("\nTraversal in post-order:\n");
+	post_order(root);
+	printf("\n%d", root->data);
 	return 0;
 }
